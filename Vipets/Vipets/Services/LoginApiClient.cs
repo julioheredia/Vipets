@@ -10,9 +10,7 @@ namespace Vipets.Services
 {
     class LoginApiClient : ApiClient, ILoginApiClient
     {
-        public LoginApiClient() : base("http://192.168.56.1:8080/")
-        {
-        }
+        public LoginApiClient() : base("http://192.168.56.1:8080/") { }
 
         public async Task<BaseApiResult<User>> Login(string email, string password)
         {

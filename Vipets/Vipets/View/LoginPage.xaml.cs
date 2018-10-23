@@ -21,9 +21,9 @@ namespace Vipets
         {
             try
             {
-                if (email.Text != null && password.Text != null)
+                if (emailEntry.Text != null && passwordEntry.Text != null)
                 {
-                    var result = await _loginApiClient.Login(email.Text, password.Text);
+                    var result = await _loginApiClient.Login(emailEntry.Text, passwordEntry.Text);
                     Console.WriteLine("retornou");
                     if (result.Success)
                     {
@@ -31,13 +31,10 @@ namespace Vipets
                         Console.WriteLine(user.name);
 
                         await DisplayAlert("Title", user.name + " " + user.surname, "ERROR");
-
                     }
                     else { await DisplayAlert("Title", "email ou senha invalidados", "ERROR"); }
-
                 }
                 else { await DisplayAlert("Title", "email ou senha invalidados", "ERROR"); }
-
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }

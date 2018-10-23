@@ -7,10 +7,10 @@
         <Label Text="Login Page" FontSize="Large"
                HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" />
 
-        <Entry x:Name="email" Placeholder="email" FontSize="Small" 
-               HorizontalOptions="Fill" VerticalOptions="Center"  />
+        <Entry x:Name="emailEntry" Placeholder="email" FontSize="Small" WidthRequest="80"
+               VerticalOptions="Center" />
 
-        <Entry x:Name="password" Placeholder="password" IsPassword="true" FontSize="Small"
+        <Entry x:Name="passwordEntry" Placeholder="password" IsPassword="true" FontSize="Small"
                HorizontalOptions="Fill" VerticalOptions="Center" />
 
         <Button Text="Enter" Clicked="Login_Clicked"
