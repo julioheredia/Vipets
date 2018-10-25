@@ -10,11 +10,12 @@ namespace Vipets.Services
 {
     public class PetActivityApiClient : ApiClient, IPetActivityApiClient
     {
-        public PetActivityApiClient() : base("http://192.168.56.1:8080/") { }
+        public PetActivityApiClient() : base("http://179.220.227.97:8080/") { }
+        // public PetActivityApiClient() : base("http://192.168.56.1:8080/") { }
 
         public async Task<BaseApiResult<List<PetActivity>>> SearchPetActivityByUser(User user)
         {
-            return await FslApiClient.Current.PostAsync<List<PetActivity>>("searchPetActivityByUser");
+            return await FslApiClient.Current.PostAsync<List<PetActivity>>("searchPetActivityByUser", user);
         }
 
     }

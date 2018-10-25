@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
+using System.Diagnostics;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,8 @@ namespace Vipets.Api
             {
                 throw new ArgumentNullException("apiUrlBase", "Uma url base de API deve ser informada");
             }
+
+            AppContext.SetSwitch("System.Net.Http.useSocketsHttpHandler", false);
 
             _apiUrlBase = apiUrlBase;
         }
@@ -63,8 +67,13 @@ namespace Vipets.Api
             try
             {
                 var json = await PostAsync(apiRoute, body);
-                var data = JsonConvert.DeserializeObject<TModel>(json, GetConverter());
+                // Debug.WriteLine("json response:  " + json);
+
+                var data = JsonConvert.DeserializeObject<TModel>(json, GetConverter());                
+                // Debug.WriteLine("data:  " + data);
+
                 var result = new OkApiResult<TModel>(data);
+                // Debug.WriteLine("result:  " + result);
 
                 callback?.Invoke(result);
 
@@ -103,19 +112,37 @@ namespace Vipets.Api
             ClearReponseHeaders();
             AddReponseHeaders();
 
+
             var bodySerialize = JsonConvert.SerializeObject(body);
             StringContent content = new StringContent(bodySerialize, Encoding.UTF8, "application/json");
 
             var response = await _restClient.PostAsync(_restClient.BaseAddress, content);
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                var finalRequestUri = response.RequestMessage.RequestUri;
+                if (finalRequestUri != _restClient.BaseAddress)
+                {
+                    if (IsHostTrusted(finalRequestUri))
+                    {
+                        response = await _restClient.PostAsync(finalRequestUri, content);
+                    }
+                }
+            }
+
             response.EnsureSuccessStatusCode();
             var data = response.Content.ReadAsStringAsync().Result;
 
             return data;
         }
 
+        private bool IsHostTrusted(Uri uri)
+        {
+            return (uri.Host == _restClient.BaseAddress.AbsoluteUri);
+        }
+
         private IsoDateTimeConverter GetConverter()
         {
-            return new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" };
+            return new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd" };
         }
 
         public IApiClient UseSufix(string urlSufix)

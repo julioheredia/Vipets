@@ -1,6 +1,7 @@
 ﻿using System;
 using Vipets.Services;
 using Vipets.Services.Models;
+using Vipets.View;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,22 +22,18 @@ namespace Vipets
         {
             try
             {
-                if (emailEntry.Text != null && passwordEntry.Text != null)
+                var result = await _loginApiClient.Login(email.Text, password.Text);
+                if (result != null)
                 {
-                    var result = await _loginApiClient.Login(emailEntry.Text, passwordEntry.Text);
-                    Console.WriteLine("retornou");
-                    if (result.Success)
-                    {
-                        User user = result.Data;
-                        Console.WriteLine(user.name);
-
-                        await DisplayAlert("Title", user.name + " " + user.surname, "ERROR");
-                    }
-                    else { await DisplayAlert("Title", "email ou senha invalidados", "ERROR"); }
+                    User user = result.Data;
+                    Console.WriteLine(" login concluido -- User logged " + user.email);
+                    //await DisplayAlert("Title", user.email, "OK");
+                    this.Content = new UserActivityPage(user);
                 }
                 else { await DisplayAlert("Title", "email ou senha invalidados", "ERROR"); }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
+
     }
 }

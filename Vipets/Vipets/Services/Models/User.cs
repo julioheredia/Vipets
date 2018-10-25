@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Vipets.Services.Models
 {
@@ -15,6 +16,8 @@ namespace Vipets.Services.Models
         public bool admin { get; set; }
         public bool employee { get; set; }
         public bool client { get; set; }
+        public List<Pet> pets { get; set; }
+        public List<Petshop> petshops { get; set; }
 
         public User() { }
 
