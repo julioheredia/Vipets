@@ -10,8 +10,7 @@ namespace Vipets.Services
 {
     public class PetActivityApiClient : ApiClient, IPetActivityApiClient
     {
-        public PetActivityApiClient() : base("http://179.220.227.97:8080/") { }
-        // public PetActivityApiClient() : base("http://192.168.56.1:8080/") { }
+        public PetActivityApiClient() : base("http://179.220.227.97:8080/vipets-mypet-server/") { }
 
         public async Task<BaseApiResult<List<PetActivity>>> SearchPetActivityByUser(User user)
         {

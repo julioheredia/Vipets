@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1815677294",
+    "firebase_url": "https://vipetsws.firebaseio.com",
+    "project_id": "vipetsws",
+    "storage_bucket": "vipetsws.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1815677294:android:78b1a683882b3a66",
+        "android_client_info": {
+          "package_name": "com.vipets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1815677294-ftptillbfadliq73ut7g14t9l1skfvh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLC9-n1KJS6AUHNwpRi4qm7swTR4CH_Y4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

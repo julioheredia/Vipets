@@ -1,4 +1,5 @@
 ﻿using System;
+using Vipets.View;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,6 +8,8 @@ namespace Vipets
 {
     public partial class App : Application
     {
+        public static RootPage RootPage { get; set; }
+
         public App()
         {
             InitializeComponent();

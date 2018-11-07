@@ -7,9 +7,8 @@ namespace Vipets.Services
 {
     public class LoginApiClient : ApiClient, ILoginApiClient
     {
-        public LoginApiClient() : base("http://179.220.227.97:8080/") { }
-        // public LoginApiClient() : base("http://192.168.56.1:8080/") { }
-
+        public LoginApiClient() : base("http://179.220.227.97:8080/vipets-mypet-server/") { }
+        
         public async Task<BaseApiResult<User>> Login(string email, string password)
         {
             Credentials credentials = new Credentials(email, password, "");

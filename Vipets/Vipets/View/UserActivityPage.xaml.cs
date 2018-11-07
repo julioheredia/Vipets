@@ -6,38 +6,37 @@ using System.Text;
 using System.Threading.Tasks;
 using Vipets.Services;
 using Vipets.Services.Models;
+using Vipets.Util;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Vipets.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserActivityPage : ContentView
+    public partial class UserActivityPage : ContentPage
     {
         private readonly PetActivityApiClient _petActivityApiClient;
 
-        public UserActivityPage(User user)
+        public UserActivityPage()
         {
             InitializeComponent();
             _petActivityApiClient = new PetActivityApiClient();
-            ShowListActivity(user);
+            ShowListActivity();
         }
 
-        private async void ShowListActivity(User user)
+        private async void ShowListActivity()
         {
-            var result = await _petActivityApiClient.SearchPetActivityByUser(user);
+            var result = await _petActivityApiClient.SearchPetActivityByUser(Singleton<AppProperties>.Instance().GetLoggedUser());
             if (result.Success)
             {
                 try
                 {
                     List<PetActivity> petActivitys = result.Data;
-                    Debug.WriteLine("montar lista");
                     List<ActivityUserView> viewUserActivitys = new List<ActivityUserView>();
                     foreach (PetActivity pa in petActivitys)
                     {
                         viewUserActivitys.Add(new ActivityUserView(pa.activity.description, pa.user.name, pa.pet.name, pa.clientScheduledTime));
                     }
-                    Debug.WriteLine("send view");
                     Activty_List.ItemsSource = viewUserActivitys;
                 }
                 catch (Exception e)
@@ -46,6 +45,5 @@ namespace Vipets.View
                 }
             }
         }
-
     }
 }
