@@ -9,6 +9,7 @@ using Vipets.Services.Models;
 using Vipets.Util;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static Vipets.Util.ImageUtil;
 
 namespace Vipets.View
 {
@@ -35,9 +36,13 @@ namespace Vipets.View
                     List<ActivityUserView> viewUserActivitys = new List<ActivityUserView>();
                     foreach (PetActivity pa in petActivitys)
                     {
-                        viewUserActivitys.Add(new ActivityUserView(pa.activity.description, pa.user.name, pa.pet.name, pa.clientScheduledTime));
+                        viewUserActivitys.Add(new ActivityUserView(pa.petActivityId,
+                            pa.activity.description, pa.pet.petId,
+                            pa.user.name, pa.pet.name, pa.clientScheduledTime));
                     }
-                    Activty_List.ItemsSource = viewUserActivitys;
+
+                    activty_List.ItemsSource = viewUserActivitys;
+
                 }
                 catch (Exception e)
                 {
@@ -45,5 +50,20 @@ namespace Vipets.View
                 }
             }
         }
+
+        public async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
+            Debug.WriteLine("OnItemSelected");
+            ListView lv = (ListView)sender;
+
+            ActivityUserView activityView = (ActivityUserView) lv.SelectedItem;
+
+            Debug.WriteLine("activityView" + activityView.petActivityId);
+            
+
+            await Navigation.PushAsync(new ActivityDatail());
+        }
+
     }
 }

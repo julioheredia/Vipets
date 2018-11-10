@@ -3,19 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vipets.View"
              x:Class="Vipets.View.UserActivityPage"
-             Title="Activtys">
+             Icon="home.png"
+             Title="Home" >
 
-    <StackLayout>
 
-        <ListView x:Name="Activty_List">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding petName}" Detail="{Binding activityDesc}">
-                    </TextCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+    <ListView x:Name="activty_List" HasUnevenRows="true" ItemSelected="OnItemSelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ImageCell ImageSource="{Binding petImage}" 
+                           Text="{Binding petName}" Detail="{Binding activityDesc}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 
-    </StackLayout>
 
 </ContentPage>

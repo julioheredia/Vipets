@@ -9,12 +9,12 @@ using Xamarin.Forms.Xaml;
 
 namespace Vipets.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ActivityAppPage : ContentPage
-	{
-		public ActivityAppPage ()
-		{
-			InitializeComponent ();
-		}
-	}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ActivityAppPage : TabbedPage
+    {
+        public ActivityAppPage()
+        {
+            InitializeComponent();
+        }
+    }
 }

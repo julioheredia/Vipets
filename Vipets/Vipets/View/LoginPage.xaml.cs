@@ -29,8 +29,10 @@ namespace Vipets
                     User user = result.Data;
                     Singleton<AppProperties>.Instance().SetLoggedUser(user);
 
-                    App.RootPage = new RootPage();
-                    Application.Current.MainPage = new RootPage();
+                    //App.RootPage = new RootPage();
+                    //Application.Current.MainPage = new RootPage();
+
+                    Application.Current.MainPage = new ActivityAppPage();
                 }
                 else { await DisplayAlert("Title", "email ou senha invalidados", "ERROR"); }
             }

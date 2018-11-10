@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vipets.View"
-             x:Class="Vipets.LoginPage">
+             x:Class="Vipets.LoginPage"
+             BackgroundImage="pet_aux_background.jpg">
+    
     <StackLayout>
-        <Label Text="Login Page" FontSize="Large"
+        <Label Text="  " FontSize="Large"
                HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" />
 
         <Entry x:Name="email" Placeholder="email" FontSize="Small" WidthRequest="80"

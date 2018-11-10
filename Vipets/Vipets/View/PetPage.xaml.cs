@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Vipets.View.Test
+namespace Vipets.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SearchPage : ContentPage
+	public partial class PetPage : ContentPage
 	{
-		public SearchPage ()
+		public PetPage ()
 		{
 			InitializeComponent ();
 		}

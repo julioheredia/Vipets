@@ -8,7 +8,6 @@ namespace Vipets
 {
     public partial class App : Application
     {
-        public static RootPage RootPage { get; set; }
 
         public App()
         {
