@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Vipets.Services;
+﻿using System.IO;
 using Xamarin.Forms;
 
 namespace Vipets.Util
@@ -11,8 +7,12 @@ namespace Vipets.Util
     {
         public enum ImagePerformerType { Pet, User, Breed };
         public enum ImageType { jpeg, png };
-        public static string point = ".";
+        public static string Point = ".";
 
+        public static string UrlImages()
+        {
+            return Vipets.Resources.Application.restUrl + "/images/";
+        }
 
         public static ImageSource ConvertByteArrayToImage(byte[] image)
         {

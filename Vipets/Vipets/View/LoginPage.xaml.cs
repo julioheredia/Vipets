@@ -1,6 +1,6 @@
 ﻿using System;
 using Vipets.Services;
-using Vipets.Services.Models;
+using Vipets.Models;
 using Vipets.Util;
 using Vipets.View;
 using Xamarin.Forms;
@@ -11,30 +11,28 @@ namespace Vipets
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        private readonly LoginApiClient _loginApiClient;
+        private readonly AuthenticationApiClient _authenticationApiClient;
 
         public LoginPage()
         {
             InitializeComponent();
-            _loginApiClient = new LoginApiClient();
+            _authenticationApiClient = new AuthenticationApiClient();
         }
 
         private async void Login_Clicked(object sender, EventArgs e)
         {
             try
             {
-                var result = await _loginApiClient.Login(email.Text, password.Text);
+                var result = await _authenticationApiClient.Authentication(email.Text, password.Text);
                 if (result.Success)
                 {
                     User user = result.Data;
                     Singleton<AppProperties>.Instance().SetLoggedUser(user);
 
-                    //App.RootPage = new RootPage();
-                    //Application.Current.MainPage = new RootPage();
-
-                    Application.Current.MainPage = new ActivityAppPage();
+                    var page = new NavigationPage(new ActivityAppPage());
+                    await Navigation.PushModalAsync(page);
                 }
-                else { await DisplayAlert("Title", "email ou senha invalidados", "ERROR"); }
+                else { await DisplayAlert("Title", "Email ou senha invalidados", "ERROR"); }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }

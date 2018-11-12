@@ -4,12 +4,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Vipets.Api;
 using Vipets.Api.Models;
-using Vipets.Services.Models;
+using Vipets.Models;
 
 namespace Vipets.Services
 {
-    public interface ILoginApiClient : IApiClient
+    public interface IAuthenticationApiClient : IApiClient
     {
-        Task<BaseApiResult<User>> Login(string email, string password);
+        Task<BaseApiResult<User>> Authentication(string email, string password);
     }
 }

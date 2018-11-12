@@ -6,10 +6,10 @@ namespace Vipets.Services
 {
     public sealed class FslApiClient
     {
-        private static volatile ILoginApiClient _instance;
+        private static volatile IAuthenticationApiClient _instance;
         private static object syncRoot = new object();
 
-        public static ILoginApiClient Current
+        public static IAuthenticationApiClient Current
         {
             get
             {
@@ -17,7 +17,7 @@ namespace Vipets.Services
                 {
                     lock (syncRoot)
                     {
-                        _instance = new LoginApiClient(); // You can use Dependency Injection
+                        _instance = new AuthenticationApiClient(); // You can use Dependency Injection
                     }
                 }
 

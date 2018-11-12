@@ -1,20 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vipets.View"
              x:Class="Vipets.View.UserActivityPage"
              Icon="home.png"
-             Title="Home" >
-
-
-    <ListView x:Name="activty_List" HasUnevenRows="true" ItemSelected="OnItemSelected">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ImageCell ImageSource="{Binding petImage}" 
-                           Text="{Binding petName}" Detail="{Binding activityDesc}" />
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-
-
+             Title="Home">
+    <ContentPage.Content>
+        <ListView x:Name ="activtyList" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Date}" 
+              ItemSelected="OnItemSelected" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell ImageSource="{Binding PetImage}" 
+                           Text="{Binding PetName}" Detail="{Binding ActivityDescription}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
 </ContentPage>

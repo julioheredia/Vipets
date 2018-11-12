@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Vipets.Services.Models;
+using Vipets.Models;
 
 namespace Vipets
 {
     public class AppProperties
     {
-
         private User LoggedUser;
         
         public User GetLoggedUser()
@@ -19,5 +16,6 @@ namespace Vipets
         {
             this.LoggedUser = user;
         }
+        
     }
 }

@@ -4,18 +4,28 @@ using System.Text;
 using System.Threading.Tasks;
 using Vipets.Api;
 using Vipets.Api.Models;
-using Vipets.Services.Models;
+using Vipets.Models;
 
 namespace Vipets.Services
 {
     public class PetActivityApiClient : ApiClient, IPetActivityApiClient
     {
-        public PetActivityApiClient() : base("http://179.220.227.97:8080/vipets-mypet-server/") { }
+        public PetActivityApiClient() : base(Vipets.Resources.Application.restUrl) { }
 
-        public async Task<BaseApiResult<List<PetActivity>>> SearchPetActivityByUser(User user)
+        public async Task<BaseApiResult<List<PetActivity>>> PetActivitysByUser(long userId)
         {
-            return await FslApiClient.Current.PostAsync<List<PetActivity>>("searchPetActivityByUser", user);
+            StringBuilder content = new StringBuilder();
+            content.Append("petActivitys/user").Append("?").Append("patshopId=").Append(userId);
+            return await FslApiClient.Current.GetAsync<List<PetActivity>>(content.ToString());
         }
 
+        public async Task<BaseApiResult<List<PetActivity>>> PetActivitysByPetshop(long petshopId)
+        {
+            StringBuilder content = new StringBuilder();
+            content.Append("petActivitys/petshop").Append("?").Append("petshopId=").Append(petshopId);
+            return await FslApiClient.Current.GetAsync<List<PetActivity>>(content.ToString());
+        }
+
+        
     }
 }

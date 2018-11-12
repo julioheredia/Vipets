@@ -11,10 +11,11 @@ namespace Vipets.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ActivityDatail : ContentPage
-	{
+    {
 		public ActivityDatail ()
 		{
-			InitializeComponent ();
-		}
-	}
+            InitializeComponent ();   
+        }
+
+    }
 }

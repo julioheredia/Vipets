@@ -18,14 +18,14 @@
     <Compile Update="Resources\application.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>application.resx</DependentUpon>
+      <DependentUpon>Application.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\application.resx">
+    <EmbeddedResource Update="Resources\Application.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>application.Designer.cs</LastGenOutput>
+      <LastGenOutput>Application.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="View\ActivityDatail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

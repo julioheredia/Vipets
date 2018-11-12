@@ -3,8 +3,8 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:Vipets.View;assembly=Vipets" 
             x:Class="Vipets.View.ActivityAppPage"
-            xmlns:pages="clr-namespace:Vipets.View"
-            BackgroundImage="pet_aux_background.jpg">
+            NavigationPage.HasNavigationBar="False"
+            NavigationPage.HasBackButton="False">
 
     <local:UserActivityPage />
     <local:PetPage />

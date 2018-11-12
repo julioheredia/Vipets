@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
-using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -32,7 +31,7 @@ namespace Vipets.Api
             try
             {
                 var json = await GetAsync(apiRoute);
-                var data = JsonConvert.DeserializeObject<TModel>(json, GetConverter());
+                var data = JsonConvert.DeserializeObject<TModel>(json);
                 var result = new OkApiResult<TModel>(data);
 
                 callback?.Invoke(result);
@@ -67,13 +66,8 @@ namespace Vipets.Api
             try
             {
                 var json = await PostAsync(apiRoute, body);
-                // Debug.WriteLine("json response:  " + json);
-
-                var data = JsonConvert.DeserializeObject<TModel>(json, GetConverter());                
-                // Debug.WriteLine("data:  " + data);
-
+                var data = JsonConvert.DeserializeObject<TModel>(json);                
                 var result = new OkApiResult<TModel>(data);
-                // Debug.WriteLine("result:  " + result);
 
                 callback?.Invoke(result);
 
@@ -90,7 +84,7 @@ namespace Vipets.Api
             try
             {
                 var data = await PostAsync(apiRoute, body);
-                var result = JsonConvert.DeserializeObject<OkApiResult<TModel>>(data, GetConverter());
+                var result = JsonConvert.DeserializeObject<OkApiResult<TModel>>(data);
 
                 callback?.Invoke(result);
 
@@ -138,11 +132,6 @@ namespace Vipets.Api
         private bool IsHostTrusted(Uri uri)
         {
             return (uri.Host == _restClient.BaseAddress.AbsoluteUri);
-        }
-
-        private IsoDateTimeConverter GetConverter()
-        {
-            return new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd" };
         }
 
         public IApiClient UseSufix(string urlSufix)

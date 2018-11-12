@@ -4,12 +4,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Vipets.Api;
 using Vipets.Api.Models;
-using Vipets.Services.Models;
+using Vipets.Models;
 
 namespace Vipets.Services
 {
     public interface IPetActivityApiClient : IApiClient
     {
-        Task<BaseApiResult<List<PetActivity>>> SearchPetActivityByUser(User user);
+        Task<BaseApiResult<List<PetActivity>>> PetActivitysByUser(long userId);
+        Task<BaseApiResult<List<PetActivity>>> PetActivitysByPetshop(long petshopId);
     }
 }
