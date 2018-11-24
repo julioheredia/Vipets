@@ -3,13 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vipets.View.ActivityDatail"
              Title="Activity Datail"
+             xmlns:local="clr-namespace:Vipets.View"
              NavigationPage.HasNavigationBar="True"
              NavigationPage.HasBackButton="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></local:DatetimeToStringConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="ActivityDatail" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Activity" TextColor="DeepSkyBlue" FontFamily="Bradley Hand ITC"  FontSize="25"  Grid.Row="1" Grid.Column="0" />
+                <Label Text="Datail" TextColor="Brown" FontFamily="Bradley Hand ITC" FontSize="25" Grid.Row="1" Grid.Column="1" />
+            </Grid>
+
+            <Label Text="{x:Binding PetActivity.user.name}" />
+            <Label Text="{x:Binding PetActivity.pet.name}" />
+            <Label Text="{x:Binding PetActivity.activity.description}" />
+            <Label Text="{x:Binding PetActivity.clientScheduledTime , Converter={StaticResource cnvDateTimeConverter}}" />
+            <Label Text="{x:Binding PetActivity.activityStart , Converter={StaticResource cnvDateTimeConverter}}" />
+            <Label Text="{x:Binding PetActivity.activityEnd , Converter={StaticResource cnvDateTimeConverter}}" />
+
         </StackLayout>
     </ContentPage.Content>
-    
+
 </ContentPage>

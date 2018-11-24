@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vipets.View.NewPetActivity"
+             Icon="cat.png">
+
+    <ContentPage.Resources>
+        <StyleSheet Source="/Resources/styles.css" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="New" TextColor="DeepSkyBlue" FontFamily="Bradley Hand ITC"  FontSize="25"  Grid.Row="1" Grid.Column="0" />
+                <Label Text="Activity" TextColor="Brown" FontFamily="Bradley Hand ITC" FontSize="25" Grid.Row="1" Grid.Column="1" />
+            </Grid>
+
+
+            <Picker x:Name="pickerEmployees" Title="Select a employee" StyleClass="myPicker"
+                    ItemsSource="{Binding employees}" ItemDisplayBinding="{Binding name}"  />
+
+            <Picker x:Name="pickerPets" Title="Select a pet" StyleClass="myPicker"
+                    ItemsSource="{Binding pets}" ItemDisplayBinding="{Binding name}"  />
+
+            <Picker x:Name="pickerActivitys" Title="Select a activity" StyleClass="myPicker"
+                    ItemsSource="{Binding activitys}" ItemDisplayBinding="{Binding description}"  />
+
+            <Label Text="Client Scheduled" StyleClass="subLabel" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <DatePicker x:Name="clientScDate" Grid.Row="1" Grid.Column="0" />
+                <TimePicker x:Name="clientScTime" Grid.Row="1" Grid.Column="1" />
+            </Grid>
+
+            <Label Text="Start"  StyleClass="subLabel" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <DatePicker x:Name="startDate" Grid.Row="1" Grid.Column="0" />
+                <TimePicker x:Name="startTime" Grid.Row="1" Grid.Column="1" />
+            </Grid>
+
+            <Label Text="End"  StyleClass="subLabel" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <DatePicker x:Name="endDate" Grid.Row="1" Grid.Column="0" />
+                <TimePicker x:Name="endTime" Grid.Row="1" Grid.Column="1" />
+            </Grid>
+
+            <Button Text="Save" Clicked="SaveClicked" StyleClass="myButton" />
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

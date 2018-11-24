@@ -11,11 +11,7 @@ namespace Vipets.Services
         
         public async Task<BaseApiResult<User>> Authentication(string email, string password)
         {
-            Credentials credentials = new Credentials(email, password, "");
-            return await FslApiClient.Current.PostAsync<User>("authentication", credentials);
-
-            // string content = String.Format("login?Email={0}&Password={1}", Email, Password); // Get login
-            //return await FslApiClient.Current.GetAsync<User>(content);
+            return await PostAsync<User>("authentication", new Credentials() { email = email, password = password, token = "" });
         }
 
     }

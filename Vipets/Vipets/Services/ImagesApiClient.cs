@@ -10,7 +10,7 @@ namespace Vipets.Services
 
         public async Task<BaseApiResult<byte[]>> GetImage(string id)
         {
-            return await FslApiClient.Current.GetAsync<byte[]>("images/" + id + ".jpeg");
+            return await GetAsync<byte[]>("images/" + id + ".jpeg");
         }
     }
 }

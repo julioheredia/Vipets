@@ -12,5 +12,7 @@ namespace Vipets.Api
         IApiClient UseSufix(string urlSufix);
         Task<BaseApiResult<TModel>> PostResultAsync<TModel>(string apiRoute, object body = null, Action<BaseApiResult<TModel>> callback = null);
         Task<BaseApiResult<TModel>> PostAsync<TModel>(string apiRoute, object body = null, Action<BaseApiResult<TModel>> callback = null);
+        Task<BaseApiResult<TModel>> PutResultAsync<TModel>(string apiRoute, object body = null, Action<BaseApiResult<TModel>> callback = null);
+        Task<BaseApiResult<TModel>> PutAsync<TModel>(string apiRoute, object body = null, Action<BaseApiResult<TModel>> callback = null);
     }
 }

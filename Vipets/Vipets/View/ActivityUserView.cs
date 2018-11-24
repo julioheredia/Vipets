@@ -11,16 +11,18 @@ namespace Vipets.View
 {
     public class ActivityUserView
     {
+        public PetActivity PetActivityIt { get; set; }
         public string PetName { get; set; }
         public ImageSource PetImage { get; set; }
         public string ActivityDescription { get; set; }
 
         public ActivityUserView(PetActivity petActivity)
         {
-            this.PetName = petActivity.Pet.Name;
-            var webImage = new Image { Source = ImageSource.FromUri(new Uri(GetUrlPetImage(petActivity.Pet.ImageName))) };
+            this.PetActivityIt = petActivity;
+            this.PetName = petActivity.pet.name;
+            var webImage = new Image { Source = ImageSource.FromUri(new Uri(GetUrlPetImage(petActivity.pet.imageName))) };
             this.PetImage = webImage.Source;
-            this.ActivityDescription = GetActivityDesc(petActivity.Activity.Description, petActivity.User.Name, petActivity.ClientScheduledTime);
+            this.ActivityDescription = GetActivityDesc(petActivity.activity.description, petActivity.user.name, petActivity.clientScheduledTime);
         }
 
         private string GetUrlPetImage(string imageName)
@@ -32,9 +34,6 @@ namespace Vipets.View
 
         private string GetActivityDesc(string activityDesc, string employee, DateTime clientScheduledTime)
         {
-
-            Debug.WriteLine("petshopId =" + clientScheduledTime);
-
             string strClientScheduled = String.Format("{0:HH:mm}", clientScheduledTime);
             StringBuilder ad = new StringBuilder();
             ad.Append(activityDesc).Append(" - ").Append(employee).Append(" - ").Append(strClientScheduled);

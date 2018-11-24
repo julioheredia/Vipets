@@ -92,6 +92,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <None Include="Resources\bradley-hand-itc.ttf" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -180,5 +181,23 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\pet_aux_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\autern_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fish.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pets_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\robin.png" />
   </ItemGroup>
 </Project>

@@ -7,6 +7,8 @@
             NavigationPage.HasBackButton="False">
 
     <local:UserActivityPage />
+    <local:NewPetActivity />
+    <local:NewClientPage />
     <local:PetPage />
-
+    
 </TabbedPage>

@@ -6,17 +6,11 @@ namespace Vipets.Models
 {
     public class Credentials
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Token { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public string token { get; set; }
 
         public Credentials() { }
 
-        public Credentials(string email, string password, string token)
-        {
-            Email = email;
-            Password = password;
-            Token = token;
-        }
     }
 }

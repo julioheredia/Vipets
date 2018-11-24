@@ -15,17 +15,21 @@ namespace Vipets.Services
         public async Task<BaseApiResult<List<PetActivity>>> PetActivitysByUser(long userId)
         {
             StringBuilder content = new StringBuilder();
-            content.Append("petActivitys/user").Append("?").Append("patshopId=").Append(userId);
-            return await FslApiClient.Current.GetAsync<List<PetActivity>>(content.ToString());
+            content.Append("petActivitys/user").Append("?").Append("userId=").Append(userId);
+            return await GetAsync<List<PetActivity>>(content.ToString());
         }
 
         public async Task<BaseApiResult<List<PetActivity>>> PetActivitysByPetshop(long petshopId)
         {
             StringBuilder content = new StringBuilder();
             content.Append("petActivitys/petshop").Append("?").Append("petshopId=").Append(petshopId);
-            return await FslApiClient.Current.GetAsync<List<PetActivity>>(content.ToString());
+            return await GetAsync<List<PetActivity>>(content.ToString());
         }
 
-        
+        public async Task<BaseApiResult<PetActivity>> CreatePetActivitys(PetActivity petActivity)
+        {
+            return await PutAsync<PetActivity>("petActivitys", petActivity);
+        }
+
     }
 }

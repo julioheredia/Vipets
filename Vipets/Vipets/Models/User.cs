@@ -5,19 +5,20 @@ namespace Vipets.Models
 {
     public class User
     {
-        public long UserId { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public byte[] Photo { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public DateTime LastChangeDate { get; set; }
-        public bool Admin { get; set; }
-        public bool Employee { get; set; }
-        public bool Client { get; set; }
-        public List<Pet> Pets { get; set; }
-        public List<Petshop> Petshops { get; set; }
+        public long userId { get; set; }
+        public string name { get; set; }
+        public string surname { get; set; }
+        public byte[] photo { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public DateTime registrationDate { get; set; }
+        public DateTime lastChangeDate { get; set; }
+        public bool admin { get; set; }
+        public bool employee { get; set; }
+        public bool client { get; set; }
+        public List<Pet> pets { get; set; }
+        public List<Petshop> petshops { get; set; }
+        public Petshop PetshopSession { get; set; }
 
         public User() { }
 

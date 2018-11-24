@@ -6,21 +6,21 @@ namespace Vipets.Models
 {
     public class Pet
     {
-        public long PetId { get; set; }
-        public string Name { get; set; }
-        public string Photo { get; set; }
-        public string ImageName { get; set; }
-        public AnimalSpecies AnimalSpecies { get; set; }
-        public Breed Breed { get; set; }
-        public string Color { get; set; }
-        public string Description { get; set; }
-        public string FavoriteWalkingPlace { get; set; }
-        public string FavoritePlay { get; set; }
-        public string RegularFeed { get; set; }
-        public string FavoriteFeed { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public DateTime LastChangeDate { get; set; }
-        public DateTime BirthDate { get; set; }
+        public long petId { get; set; }
+        public string name { get; set; }
+        public string photo { get; set; }
+        public string imageName { get; set; }
+        public AnimalSpecies animalSpecies { get; set; }
+        public Breed breed { get; set; }
+        public string color { get; set; }
+        public string description { get; set; }
+        public string favoriteWalkingPlace { get; set; }
+        public string favoritePlay { get; set; }
+        public string regularFeed { get; set; }
+        public string favoriteFeed { get; set; }
+        public DateTime registrationDate { get; set; }
+        public DateTime lastChangeDate { get; set; }
+        public DateTime birthDate { get; set; }
 
         public Pet() { }
     }

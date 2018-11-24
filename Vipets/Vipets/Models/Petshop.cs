@@ -6,15 +6,15 @@ namespace Vipets.Models
 {
     public class Petshop
     {
-        public long PetshopId { get; set; }
-        public string Name { get; set; }
-        public string BusinessName { get; set; }
-        public string Logo { get; set; }
-        public string Email { get; set; }
-        public string Telephone { get; set; }
-        public string TelephoneAux { get; set; }
-        public DateTime DateRegistration { get; set; }
-        public DateTime DateLastChange { get; set; }
+        public long petshopId { get; set; }
+        public string name { get; set; }
+        public string businessName { get; set; }
+        public string logo { get; set; }
+        public string email { get; set; }
+        public string telephone { get; set; }
+        public string telephoneAux { get; set; }
+        public DateTime dateRegistration { get; set; }
+        public DateTime dateLastChange { get; set; }
 
         public Petshop() { }
 

@@ -6,9 +6,9 @@ namespace Vipets.Models
 {
     public class Activity
     {
-        public long ActivityId { get; set; }
-        public string Description { get; set; }
-        public bool Active { get; set; }
+        public long activityId { get; set; }
+        public string description { get; set; }
+        public bool active { get; set; }
 
         public Activity() { }
 

@@ -2,17 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vipets.View"
              x:Class="Vipets.View.UserActivityPage"
-             Icon="home.png"
-             Title="Home">
+             Icon="dog.png">
+
     <ContentPage.Content>
-        <ListView x:Name ="activtyList" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Date}" 
+        <StackLayout>
+            <Label Text="List Activitys" />
+
+            <ListView x:Name ="activtyList" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Date}" 
               ItemSelected="OnItemSelected" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ImageCell ImageSource="{Binding PetImage}" 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell ImageSource="{Binding PetImage}" 
                            Text="{Binding PetName}" Detail="{Binding ActivityDescription}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

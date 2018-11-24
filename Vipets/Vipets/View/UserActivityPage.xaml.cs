@@ -6,14 +6,12 @@ using Vipets.Util;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace Vipets.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserActivityPage : ContentPage
     {
-        private readonly PetActivityApiClient _petActivityApiClient;
         private List<PetActivity> petActivitys;
 
         private ObservableCollection<GroupedActivityUser> grouped { get; set; }
@@ -21,17 +19,13 @@ namespace Vipets.View
         public UserActivityPage()
         {
             InitializeComponent();
-            _petActivityApiClient = new PetActivityApiClient();
             CallPetActivitys();
         }
 
         private async void CallPetActivitys()
         {
             User LoggedUser = Singleton<AppProperties>.Instance().GetLoggedUser();
-            
-            Debug.WriteLine("petshopId ="+LoggedUser.Petshops[0].PetshopId);
-            
-            var result = await _petActivityApiClient.PetActivitysByPetshop(LoggedUser.Petshops[0].PetshopId);
+            var result = await VipetsApiClient.CurrentPetActivitys.PetActivitysByPetshop(LoggedUser.PetshopSession.petshopId);
             if (result.Success)
             {
                 petActivitys = result.Data;
@@ -47,23 +41,27 @@ namespace Vipets.View
             DateTime itDt = DateUtil.NullDateTime;
             foreach (PetActivity pa in petActivitys)
             {
-                if (itDt == DateUtil.NullDateTime || DateUtil.isSameDate(itDt, pa.ActivityStart))
+                if (itDt == DateUtil.NullDateTime || DateUtil.isSameDate(itDt, pa.activityStart))
                 {
-                    itDt = pa.ActivityStart;
+                    itDt = pa.activityStart;
                     vuaaux.Add(new ActivityUserView(pa));
-                } else
+                }
+                else
                 {
                     GroupedActivityUser activitGroup = AgroupedActivityUser(vuaaux, itDt);
                     grouped.Add(activitGroup);
 
                     vuaaux = new List<ActivityUserView>();
                     vuaaux.Add(new ActivityUserView(pa));
-                    itDt = pa.ActivityStart;
+                    itDt = pa.activityStart;
                 }
             }
 
-            GroupedActivityUser activitGroupUltimo = AgroupedActivityUser(vuaaux, itDt);
-            grouped.Add(activitGroupUltimo);
+            if (itDt != DateUtil.NullDateTime)
+            {
+                GroupedActivityUser activitGroupUltimo = AgroupedActivityUser(vuaaux, itDt);
+                grouped.Add(activitGroupUltimo);
+            }
 
             activtyList.ItemsSource = grouped;
         }
@@ -81,10 +79,11 @@ namespace Vipets.View
 
         public async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            ActivityUserView activityView = (ActivityUserView)activtyList.SelectedItem;
-            await Navigation.PushAsync(new ActivityDatail());
+            ActivityUserView activityView = (ActivityUserView) activtyList.SelectedItem;
+            await Navigation.PushAsync(new ActivityDatail(activityView.PetActivityIt));
             activtyList.SelectedItem = null;
         }
+
 
     }
 }

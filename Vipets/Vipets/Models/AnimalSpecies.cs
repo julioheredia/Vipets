@@ -6,9 +6,9 @@ namespace Vipets.Models
 {
     public class AnimalSpecies
     {
-        public long AnimalSpeciesId { get; set; }
-        public String Name { get; set; }
-        public String Description { get; set; }
+        public long animalSpeciesId { get; set; }
+        public String name { get; set; }
+        public String description { get; set; }
 
         public AnimalSpecies() { }
 
