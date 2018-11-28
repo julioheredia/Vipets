@@ -5,6 +5,10 @@
              Icon="cat.png">
 
     <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="TitleFont" Android="bradley-hand-itc.ttf#Bradley Hand ITC" iOS="Bradley Hand ITC"/>
+        </ResourceDictionary>
+
         <StyleSheet Source="/Resources/styles.css" />
     </ContentPage.Resources>
 
@@ -18,19 +22,20 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-
-                <Label Text="New" TextColor="DeepSkyBlue" FontFamily="Bradley Hand ITC"  FontSize="25"  Grid.Row="1" Grid.Column="0" />
-                <Label Text="Activity" TextColor="Brown" FontFamily="Bradley Hand ITC" FontSize="25" Grid.Row="1" Grid.Column="1" />
+                <Label Text="New" TextColor="DeepSkyBlue" FontFamily="{StaticResource TitleFont}"  FontSize="23"  Grid.Row="0" Grid.Column="0" />
+                <Label Text="Activity" TextColor="Brown"  FontFamily="{StaticResource TitleFont}" FontSize="23" Grid.Row="0" Grid.Column="1" />
             </Grid>
 
+            <Picker x:Name="pickerEmployees" Title="Select a employee" StyleClass="myPicker" 
+                    ItemsSource="{Binding employees}" ItemDisplayBinding="{Binding CompleteName}"  />
 
-            <Picker x:Name="pickerEmployees" Title="Select a employee" StyleClass="myPicker"
-                    ItemsSource="{Binding employees}" ItemDisplayBinding="{Binding name}"  />
+            <Picker x:Name="pickerClients" Title="Select a client" StyleClass="myPicker" SelectedIndexChanged="OnSelectedClientChanged"  
+                    ItemsSource="{Binding clients}" ItemDisplayBinding="{Binding CompleteName}"  />
 
             <Picker x:Name="pickerPets" Title="Select a pet" StyleClass="myPicker"
                     ItemsSource="{Binding pets}" ItemDisplayBinding="{Binding name}"  />
 
-            <Picker x:Name="pickerActivitys" Title="Select a activity" StyleClass="myPicker"
+            <Picker x:Name="pickerActivitys" Title="Select a activity" StyleClass="myPicker" 
                     ItemsSource="{Binding activitys}" ItemDisplayBinding="{Binding description}"  />
 
             <Label Text="Client Scheduled" StyleClass="subLabel" />
@@ -41,8 +46,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <DatePicker x:Name="clientScDate" Grid.Row="1" Grid.Column="0" />
-                <TimePicker x:Name="clientScTime" Grid.Row="1" Grid.Column="1" />
+                <DatePicker x:Name="clientScDate" DateSelected="OnClientScDateSelected" Grid.Row="0" Grid.Column="0" FontSize="Small"/>
+                <TimePicker x:Name="clientScTime" PropertyChanged="OnClientScTimeChanged" Grid.Row="0" Grid.Column="1" FontSize="Small"/>
             </Grid>
 
             <Label Text="Start"  StyleClass="subLabel" />
@@ -53,8 +58,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <DatePicker x:Name="startDate" Grid.Row="1" Grid.Column="0" />
-                <TimePicker x:Name="startTime" Grid.Row="1" Grid.Column="1" />
+                <DatePicker x:Name="startDate" Grid.Row="0" Grid.Column="0" FontSize="Small"/>
+                <TimePicker x:Name="startTime" Grid.Row="0" Grid.Column="1" FontSize="Small"/>
             </Grid>
 
             <Label Text="End"  StyleClass="subLabel" />
@@ -65,8 +70,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <DatePicker x:Name="endDate" Grid.Row="1" Grid.Column="0" />
-                <TimePicker x:Name="endTime" Grid.Row="1" Grid.Column="1" />
+                <DatePicker x:Name="endDate" Grid.Row="0" Grid.Column="0" FontSize="Small"/>
+                <TimePicker x:Name="endTime" Grid.Row="0" Grid.Column="1" FontSize="Small"/>
             </Grid>
 
             <Button Text="Save" Clicked="SaveClicked" StyleClass="myButton" />

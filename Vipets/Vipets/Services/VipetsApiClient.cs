@@ -11,6 +11,7 @@ namespace Vipets.Services
         private static volatile IUserApiClient _instanceUser;
         private static volatile IActivityApiClient _instanceActivity;
         private static volatile IPetApiClient _instancePet;
+        private static volatile IBreedApiClient _instanceBreed;
 
         private static object syncRoot = new object();
 
@@ -92,5 +93,21 @@ namespace Vipets.Services
                 return _instancePet;
             }
         }
+
+        public static IBreedApiClient CurrentBreeds
+        {
+            get
+            {
+                if (_instanceBreed == null)
+                {
+                    lock (syncRoot)
+                    {
+                        _instanceBreed = new BreedApiClient();
+                    }
+                }
+                return _instanceBreed;
+            }
+        }
+
     }
 }

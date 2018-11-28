@@ -8,9 +8,8 @@ namespace Vipets.Models
     {
         public long petId { get; set; }
         public string name { get; set; }
-        public string photo { get; set; }
+        public byte[] photo { get; set; }
         public string imageName { get; set; }
-        public AnimalSpecies animalSpecies { get; set; }
         public Breed breed { get; set; }
         public string color { get; set; }
         public string description { get; set; }

@@ -18,5 +18,10 @@ namespace Vipets.Services
             content.Append("pets/petshop").Append("?").Append("petshopId=").Append(petshopId);
             return await GetAsync<List<Pet>>(content.ToString());
         }
+
+        public async Task<BaseApiResult<Pet>> CreatePet(Pet pet)
+        {
+            return await PutAsync<Pet>("pets", pet);
+        }
     }
 }

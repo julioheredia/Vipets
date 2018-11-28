@@ -61,11 +61,20 @@ namespace Vipets.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a http://179.220.227.8:8080/vipets-mypet-server.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a http://ec2-34-218-54-17.us-west-2.compute.amazonaws.com:8080/vipets-mypet-server.
         /// </summary>
         internal static string restUrl {
             get {
                 return ResourceManager.GetString("restUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a http://179.220.227.8:8080/vipets-mypet-server.
+        /// </summary>
+        internal static string restUrlTest {
+            get {
+                return ResourceManager.GetString("restUrlTest", resourceCulture);
             }
         }
     }

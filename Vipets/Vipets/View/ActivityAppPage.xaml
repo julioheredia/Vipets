@@ -4,11 +4,12 @@
             xmlns:local="clr-namespace:Vipets.View;assembly=Vipets" 
             x:Class="Vipets.View.ActivityAppPage"
             NavigationPage.HasNavigationBar="False"
-            NavigationPage.HasBackButton="False">
-
+            NavigationPage.HasBackButton="False"
+            BarBackgroundColor="LightSkyBlue"
+            HeightRequest="10">
+    
     <local:UserActivityPage />
     <local:NewPetActivity />
+    <local:NewEmployeePage />
     <local:NewClientPage />
-    <local:PetPage />
-    
 </TabbedPage>

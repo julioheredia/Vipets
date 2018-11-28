@@ -3,11 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vipets.View.NewClientPage"
              Icon="robin.png">
-    
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="TitleFont" Android="bradley-hand-itc.ttf#Bradley Hand ITC" iOS="Bradley Hand ITC"/>
+            <OnPlatform x:TypeArguments="x:String" x:Key="TitleSubFont" Android="califi.ttf#Californian FB" iOS="Californian FB"/>
+        </ResourceDictionary>
+        <StyleSheet Source="/Resources/styles.css" />
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="List Client" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="New" TextColor="DeepSkyBlue" FontFamily="{StaticResource TitleFont}"  FontSize="23"  Grid.Row="0" Grid.Column="0" />
+                    <Label Text="Pet/Client" TextColor="Brown"  FontFamily="{StaticResource TitleFont}" FontSize="23" Grid.Row="0" Grid.Column="1" />
+                </Grid>
+
+                <Picker x:Name="picker" Title="Select a option"  StyleClass="myPicker" SelectedIndexChanged="OnSelectedOption" >
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Pet/Client</x:String>
+                            <x:String>Client</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label x:Name="petTitle" Text="Pet" FontFamily="{StaticResource TitleSubFont}" FontSize="22" TextColor="DeepSkyBlue" />
+                <Entry x:Name="petName" Placeholder="name" FontSize="Small" WidthRequest="80" />
+                <Picker x:Name="pickerBreeds" Title="Select a breeds" StyleClass="myPicker" 
+                    ItemsSource="{Binding breeds}" ItemDisplayBinding="{Binding name}" />
+                <Button x:Name="UploadPetImageButton" Text="Upload Pet Image" Clicked="HandleClicked" BackgroundColor="Orange" />
+                <Image x:Name="petImage" HeightRequest="170" WidthRequest="170"  />
+
+                <Label x:Name="clientTitle" Text="Client" FontFamily="{StaticResource TitleSubFont}" FontSize="22" TextColor="Brown"/>
+                <Entry x:Name="clientName" Placeholder="name" FontSize="Small" WidthRequest="80"/>
+                <Entry x:Name="clientSurname" Placeholder="surname" FontSize="Small" WidthRequest="80"/>
+                <Entry x:Name="emailClient" Placeholder="email" FontSize="Small" WidthRequest="80"/>
+
+                <Button x:Name="SaveButton" Text="Save" Clicked="SaveClicked" StyleClass="myButton" />
+                
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
-    
+
 </ContentPage>

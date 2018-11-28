@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Vipets.Util
 {
@@ -14,12 +13,17 @@ namespace Vipets.Util
             return Vipets.Resources.Application.restUrl + "/images/";
         }
 
-        public static ImageSource ConvertByteArrayToImage(byte[] image)
+        public static byte[] GetImageBytes(StreamImageSource imagesource)
         {
-            ImageSource retSource = null;
-            byte[] imageAsBytes = (byte[])image;
-            retSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
-            return retSource;
+            byte[] ImageBytes;
+            using (var memoryStream = new System.IO.MemoryStream())
+            {
+                var stream = imagesource.Stream.Invoke(new System.Threading.CancellationToken()).Result;
+                stream.CopyTo(memoryStream);
+                stream = null;
+                ImageBytes = memoryStream.ToArray();
+            }
+            return ImageBytes;
         }
     }
 }

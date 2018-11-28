@@ -188,7 +188,14 @@ namespace Vipets.Api
 
         private IsoDateTimeConverter GetConverter()
         {
-            return new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd" };
+            try
+            {
+                return new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd" };
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            return null;
         }
 
         public IApiClient UseSufix(string urlSufix)

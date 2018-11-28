@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vipets.View.NewEmployeePage"
+             Icon="fish.png">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="TitleFont" Android="bradley-hand-itc.ttf#Bradley Hand ITC" iOS="Bradley Hand ITC"/>
+            <OnPlatform x:TypeArguments="x:String" x:Key="TitleSubFont" Android="califi.ttf#Californian FB" iOS="Californian FB"/>
+        </ResourceDictionary>
+        <StyleSheet Source="/Resources/styles.css" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="New" TextColor="DeepSkyBlue" FontFamily="{StaticResource TitleFont}"  FontSize="23"  Grid.Row="0" Grid.Column="0" />
+                    <Label Text="Employee" TextColor="Brown"  FontFamily="{StaticResource TitleFont}" FontSize="23" Grid.Row="0" Grid.Column="1" />
+                </Grid>
+
+                <Entry x:Name="employeeName" Placeholder="name" FontSize="Small" WidthRequest="80"/>
+                <Entry x:Name="employeeSurname" Placeholder="surname" FontSize="Small" WidthRequest="80"/>
+                <Entry x:Name="employeeEmail" Placeholder="email" FontSize="Small" WidthRequest="80"/>
+
+                <Button x:Name="SaveButton" Text="Save" Clicked="SaveClicked" StyleClass="myButton" />
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

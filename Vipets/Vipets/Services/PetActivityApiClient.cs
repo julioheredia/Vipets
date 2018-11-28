@@ -12,10 +12,10 @@ namespace Vipets.Services
     {
         public PetActivityApiClient() : base(Vipets.Resources.Application.restUrl) { }
 
-        public async Task<BaseApiResult<List<PetActivity>>> PetActivitysByUser(long userId)
+        public async Task<BaseApiResult<List<PetActivity>>> PetActivitysByEmployee(long userId)
         {
             StringBuilder content = new StringBuilder();
-            content.Append("petActivitys/user").Append("?").Append("userId=").Append(userId);
+            content.Append("petActivitys/employee").Append("?").Append("userId=").Append(userId);
             return await GetAsync<List<PetActivity>>(content.ToString());
         }
 

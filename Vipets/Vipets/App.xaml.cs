@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Vipets.Models;
+using Vipets.Util;
 using Vipets.View;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,7 +13,16 @@ namespace Vipets
         public App()
         {
             InitializeComponent();
-            MainPage = new LoginPage();
+
+            User LoggedUser = Singleton<AppProperties>.Instance().GetLoggedUser();
+            if (LoggedUser != null)
+            {
+                MainPage = new NavigationPage(new ActivityAppPage());                
+            }
+            else
+            {
+                MainPage = new LoginPage();
+            }
         }
 
         protected override void OnStart()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Vipets.Util;
 
 namespace Vipets.Models
 {
@@ -21,6 +22,14 @@ namespace Vipets.Models
         public Petshop PetshopSession { get; set; }
 
         public User() { }
+
+        public string CompleteName
+        {
+            get
+            {
+                return ViewUtil.GetUserName(name, surname);
+            }
+        }
 
     }
 }

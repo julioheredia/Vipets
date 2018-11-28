@@ -10,7 +10,7 @@ namespace Vipets.Services
 {
     public interface IPetActivityApiClient : IApiClient
     {
-        Task<BaseApiResult<List<PetActivity>>> PetActivitysByUser(long userId);
+        Task<BaseApiResult<List<PetActivity>>> PetActivitysByEmployee(long userId);
         Task<BaseApiResult<List<PetActivity>>> PetActivitysByPetshop(long petshopId);
         Task<BaseApiResult<PetActivity>> CreatePetActivitys(PetActivity petActivity);
     }

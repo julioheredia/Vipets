@@ -13,13 +13,30 @@ namespace Vipets.View
     public partial class UserActivityPage : ContentPage
     {
         private List<PetActivity> petActivitys;
-
         private ObservableCollection<GroupedActivityUser> grouped { get; set; }
+        private bool _isRefreshing = false;
 
         public UserActivityPage()
         {
             InitializeComponent();
             CallPetActivitys();
+        }
+
+        protected void OnRefreshData(object sender, EventArgs e)
+        {        
+            CallPetActivitys();
+            activtyList.EndRefresh();
+            IsRefreshing = false;
+        }
+        
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
         }
 
         private async void CallPetActivitys()
@@ -79,11 +96,13 @@ namespace Vipets.View
 
         public async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            ActivityUserView activityView = (ActivityUserView) activtyList.SelectedItem;
-            await Navigation.PushAsync(new ActivityDatail(activityView.PetActivityIt));
-            activtyList.SelectedItem = null;
+            ActivityUserView activityView = (ActivityUserView)activtyList.SelectedItem;
+            if (activityView != null)
+            {
+                await Navigation.PushAsync(new ActivityDatail(activityView.PetActivityIt));
+                activtyList.SelectedItem = null;
+            }
         }
-
 
     }
 }

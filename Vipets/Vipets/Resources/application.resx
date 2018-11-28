@@ -118,7 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="restUrl" xml:space="preserve">
+    <value>http://ec2-34-218-54-17.us-west-2.compute.amazonaws.com:8080/vipets-mypet-server</value>
+    <comment>address connetion rest</comment>
+  </data>
+  <data name="restUrlTest" xml:space="preserve">
     <value>http://179.220.227.8:8080/vipets-mypet-server</value>
-    <comment>ip connetion rest</comment>
+    <comment>test - address connetion rest</comment>
   </data>
 </root>

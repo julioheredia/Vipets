@@ -15,6 +15,7 @@ namespace Vipets.View
         private List<Pet> pets;
         private List<Activity> activitys;
         private List<User> employees;
+        private List<User> clients;
 
         public NewPetActivity()
         {
@@ -30,34 +31,26 @@ namespace Vipets.View
                 pa.clientScheduledTime = getDateTimePickers(clientScDate, clientScTime);
                 pa.activityEnd = getDateTimePickers(endDate, endTime);
                 pa.activityStart = getDateTimePickers(startDate, startTime);
-                pa.activity = (Activity)GetPickerObject(pickerActivitys);
-                pa.pet = (Pet)GetPickerObject(pickerPets);
-                pa.user = (User)GetPickerObject(pickerEmployees);
+                pa.activity = (Activity) ViewUtil.GetPickerObject(pickerActivitys);
+                pa.pet = (Pet)ViewUtil.GetPickerObject(pickerPets);
+                pa.employed = (User)ViewUtil.GetPickerObject(pickerEmployees);
+                pa.clientGetPet = (User)ViewUtil.GetPickerObject(pickerClients);
                 pa.petshop = Singleton<AppProperties>.Instance().GetLoggedUser().PetshopSession;
 
                 var result = await VipetsApiClient.CurrentPetActivitys.CreatePetActivitys(pa);
                 if (result.Success)
                 {
                     await DisplayAlert("Success", "New activity saved successfully!", "OK");
+                    CleanFields();
                 }
                 else { await DisplayAlert("ERROR", "Error saving data", "OK"); }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        
+
         private DateTime getDateTimePickers(DatePicker datePicker, TimePicker timePicker)
         {
             return datePicker.Date + timePicker.Time;
-        }
-
-        private object GetPickerObject(Picker picker)
-        {
-            int selectedIndex = picker.SelectedIndex;
-            if (selectedIndex != -1)
-            {
-                return picker.ItemsSource[selectedIndex];
-            }
-            return null;
         }
 
         private async void LoadLists()
@@ -67,29 +60,62 @@ namespace Vipets.View
             if (userresult.Success)
                 employees = userresult.Data;
 
-            var petresult = await VipetsApiClient.CurrentPets.PetsByPetshop(petshopId);
-            if (petresult.Success)
-                pets = petresult.Data;
-
+            var clientresult = await VipetsApiClient.CurrentUsers.clientsByPetshop(petshopId);
+            if (clientresult.Success)
+                clients = clientresult.Data;
+            
             var activityresult = await VipetsApiClient.CurrentActivitys.Activitys();
             if (activityresult.Success)
                 activitys = activityresult.Data;
 
             pickerEmployees.ItemsSource = employees;
+            pickerClients.ItemsSource = clients;
             pickerActivitys.ItemsSource = activitys;
-            pickerPets.ItemsSource = pets;
+            
         }
 
-        //private void OnClientScDateSelected(object sender, DateChangedEventArgs args)
-        //{
-        //    startDate.Date = clientScDate.Date;
-        //    endDate.Date = clientScDate.Date;
-        //}
+        void OnSelectedClientChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            int selectedIndex = picker.SelectedIndex;
+            User client = null;
+            if (selectedIndex != -1)
+            {
+                client = (User)picker.ItemsSource[selectedIndex];
+                pets = client.pets;
+                pickerPets.ItemsSource = pets;
+            }
+        }
 
-        //private void OnclientScTimeChanged(object sender, PropertyChangedEventArgs args)
-        //{
-        //    startTime.Time = clientScTime.Time.Add(new TimeSpan(-3, 0, 0));
-        //    endTime.Time = clientScTime.Time.Add(new TimeSpan(-2, 0, 0));
-        //}
+        private void CleanFields()
+        {
+            CleanPicker(pickerEmployees);
+            CleanPicker(pickerClients);
+            CleanPicker(pickerPets);
+            CleanPicker(pickerActivitys);
+            clientScDate.Date = DateTime.Now;
+            startDate.Date = DateTime.Now;
+            endDate.Date = DateTime.Now;
+            clientScTime.Time = DateTime.Now.TimeOfDay;
+            startTime.Time = DateTime.Now.TimeOfDay;
+            endTime.Time = DateTime.Now.TimeOfDay;
+        }
+
+        private void CleanPicker(Picker picker)
+        {
+            picker.SelectedIndex = -1;
+        }
+
+        private void OnClientScDateSelected(object sender, DateChangedEventArgs args)
+        {
+            startDate.Date = clientScDate.Date;
+            endDate.Date = clientScDate.Date;
+        }
+
+        private void OnClientScTimeChanged(object sender, PropertyChangedEventArgs args)
+        {
+            // startTime.Time = DateUtil.CalculateTime(clientScTime.Time, -2, 0);
+            // endTime.Time = DateUtil.CalculateTime(clientScTime.Time, -1, 0);
+        }
     }
 }

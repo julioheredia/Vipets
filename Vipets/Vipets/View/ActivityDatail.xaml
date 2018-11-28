@@ -9,13 +9,14 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <local:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></local:DatetimeToStringConverter>
+            <OnPlatform x:TypeArguments="x:String" x:Key="TitleFont" Android="bradley-hand-itc.ttf#Bradley Hand ITC" iOS="Bradley Hand ITC"/>
         </ResourceDictionary>
+        <StyleSheet Source="/Resources/styles.css" />
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
         <StackLayout>
-
+            <Label Text="Pet" StyleClass="subLabel" />
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -23,18 +24,24 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-
-                <Label Text="Activity" TextColor="DeepSkyBlue" FontFamily="Bradley Hand ITC"  FontSize="25"  Grid.Row="1" Grid.Column="0" />
-                <Label Text="Datail" TextColor="Brown" FontFamily="Bradley Hand ITC" FontSize="25" Grid.Row="1" Grid.Column="1" />
+                <Label x:Name="petName" StyleClass="datailLabel" Grid.Row="0" Grid.Column="0" />
+                <Image x:Name="petImage" Grid.Row="0" Grid.Column="1" HeightRequest="170" WidthRequest="170"/>
             </Grid>
+            <Label Text="Client" StyleClass="subLabel" />
+            <Label x:Name="client" StyleClass="datailLabel"/>
+            <Label Text="Employed" StyleClass="subLabel" />
+            <Label x:Name="employed" StyleClass="datailLabel" />
+            <Label Text="Activity" StyleClass="subLabel" />
+            <Label x:Name="activity" StyleClass="datailLabel" />
+            <Label Text="Client Scheduled" StyleClass="subLabel" />
+            <Label x:Name="clientSc" StyleClass="datailLabel"/>
+            <Label Text="Activity Start" StyleClass="subLabel" />
+            <Label x:Name="startDate" StyleClass="datailLabel"/>
+            <Label Text="Activity End" StyleClass="subLabel" />
+            <Label x:Name="endDate" StyleClass="datailLabel"/>
 
-            <Label Text="{x:Binding PetActivity.user.name}" />
-            <Label Text="{x:Binding PetActivity.pet.name}" />
-            <Label Text="{x:Binding PetActivity.activity.description}" />
-            <Label Text="{x:Binding PetActivity.clientScheduledTime , Converter={StaticResource cnvDateTimeConverter}}" />
-            <Label Text="{x:Binding PetActivity.activityStart , Converter={StaticResource cnvDateTimeConverter}}" />
-            <Label Text="{x:Binding PetActivity.activityEnd , Converter={StaticResource cnvDateTimeConverter}}" />
-
+            <Button Text="Task Complete" Clicked="SaveClicked" StyleClass="myButton" />
+            
         </StackLayout>
     </ContentPage.Content>
 

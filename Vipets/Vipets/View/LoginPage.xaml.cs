@@ -2,11 +2,11 @@
 using Vipets.Services;
 using Vipets.Models;
 using Vipets.Util;
-using Vipets.View;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Threading.Tasks;
 
-namespace Vipets
+namespace Vipets.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
@@ -20,32 +20,38 @@ namespace Vipets
         {
             try
             {
-                var result = await VipetsApiClient.CurrentAuthentications.Authentication(email.Text, password.Text);
-                if (result.Success)
+                User user = await GetUser(email.Text, password.Text);
+                if (user != null)
                 {
-                    User user = result.Data;
-                    DefinePetshopSession(user);
-                    var page = new NavigationPage(new ActivityAppPage());
-                    await Navigation.PushModalAsync(page);
+                    if (!Singleton<AppProperties>.Instance().isUniquePetshop(user))
+                    {
+                        /*
+                            Later there will be after the client's authentication the option to choose the pertshop
+                         */
+                    }
+                    Singleton<AppProperties>.Instance().SetLoggedUser(user);
+                    GoNextPage();
                 }
                 else { await DisplayAlert("ERROR", "Invalid email or password", "OK"); }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
-        private void DefinePetshopSession(User user)
+        private async void GoNextPage()
         {
-
-            if(user.petshops.Count > 1)
-            {
-                // Page to client user select the petshop he's going to authentication in the session
-            }
-            else
-            {
-                user.PetshopSession = user.petshops[0];
-            }
-
-            Singleton<AppProperties>.Instance().SetLoggedUser(user);
+            var page = new NavigationPage(new ActivityAppPage());
+            await Navigation.PushModalAsync(page);
         }
+
+        private async Task<User> GetUser(string e, string p)
+        {
+            var result = await VipetsApiClient.CurrentAuthentications.Authentication(e, p);
+            if (result.Success && result.Data != null)
+            {
+                return result.Data;
+            }
+            else return null;
+        }
+
     }
 }
