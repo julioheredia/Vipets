@@ -26,7 +26,7 @@ namespace Vipets.View
                 PetActivityIt.isActivityCompleted = true;
                 PetActivityIt.activityCompletedTime = DateUtil.GetFormatRest(DateTime.Now);
 
-                var result = await VipetsApiClient.CurrentPetActivitys.CreatePetActivitys(PetActivityIt);
+                var result = await VipetsApiClient.CurrentPetActivitys.SavePetActivitys(PetActivityIt);
                 if (result.Success)
                 {
                     await DisplayAlert("Success", "Activity saved successfully!", "OK");

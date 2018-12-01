@@ -19,19 +19,19 @@ namespace Vipets.Services
             return await GetAsync<List<User>>(content.ToString());
         }
 
-        public async Task<BaseApiResult<List<User>>> clientsByPetshop(long petshopId)
+        public async Task<BaseApiResult<List<User>>> ClientsByPetshop(long petshopId)
         {
             StringBuilder content = new StringBuilder();
             content.Append("users/clients/petshop").Append("?").Append("petshopId=").Append(petshopId);
             return await GetAsync<List<User>>(content.ToString());
         }
 
-        public async Task<BaseApiResult<User>> CreateClient(User client)
+        public async Task<BaseApiResult<User>> SaveClient(User client)
         {
             return await PutAsync<User>("/users/clients", client);
         }
 
-        public async Task<BaseApiResult<User>> CreateEmployee(User client)
+        public async Task<BaseApiResult<User>> SaveEmployee(User client)
         {
             return await PutAsync<User>("/users/employees", client);
         }

@@ -41,5 +41,10 @@ namespace Vipets.Util
             return null;
         }
 
+        public static void CleanPicker(Picker picker)
+        {
+            picker.SelectedIndex = -1;
+        }
+
     }
 }

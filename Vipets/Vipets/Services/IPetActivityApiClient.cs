@@ -12,6 +12,6 @@ namespace Vipets.Services
     {
         Task<BaseApiResult<List<PetActivity>>> PetActivitysByEmployee(long userId);
         Task<BaseApiResult<List<PetActivity>>> PetActivitysByPetshop(long petshopId);
-        Task<BaseApiResult<PetActivity>> CreatePetActivitys(PetActivity petActivity);
+        Task<BaseApiResult<PetActivity>> SavePetActivitys(PetActivity petActivity);
     }
 }

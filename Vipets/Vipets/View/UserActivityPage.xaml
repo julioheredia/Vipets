@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Vipets.View"
              x:Class="Vipets.View.UserActivityPage"
              xmlns:ci="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              Icon="dog.png">
@@ -18,8 +17,9 @@
 
         <ListView x:Name ="activtyList" IsGroupingEnabled="true" GroupDisplayBinding="{Binding Date}" 
                   ItemSelected="OnItemSelected" SelectionMode="Single"
-                  IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}" Refreshing="OnRefreshData">
-            
+                  IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}" Refreshing="OnRefreshData"
+                      RowHeight="50" >
+
             <ListView.Header>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -32,7 +32,7 @@
                     <Label Text="Activitys" TextColor="Brown"  FontFamily="{StaticResource TitleFont}" FontSize="23" Grid.Row="0" Grid.Column="1" />
                 </Grid>
             </ListView.Header>
-            
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -40,11 +40,11 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20" />
                             </Grid.RowDefinitions>
-                            
+
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="3*" />
                                 <ColumnDefinition Width="4*" />
-                                <ColumnDefinition Width="6*" />
+                                <ColumnDefinition Width="7*" />
                             </Grid.ColumnDefinitions>
 
                             <ci:CircleImage Grid.RowSpan="3" Source="{Binding PetImage}" >
@@ -52,7 +52,7 @@
                                     <OnPlatform x:TypeArguments="x:Double" Android="60" iOS="60"/>
                                 </ci:CircleImage.WidthRequest>
                                 <ci:CircleImage.HeightRequest>
-                                    <OnPlatform x:TypeArguments="x:Double" Android="60" iOS="60"/>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="80" iOS="80"/>
                                 </ci:CircleImage.HeightRequest>
                             </ci:CircleImage>
 

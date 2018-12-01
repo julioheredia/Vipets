@@ -8,13 +8,13 @@ using Xamarin.Forms.Xaml;
 
 namespace Vipets.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewEmployeePage : ContentPage
-	{
-		public NewEmployeePage ()
-		{
-			InitializeComponent ();
-		}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NewEmployeePage : ContentPage
+    {
+        public NewEmployeePage()
+        {
+            InitializeComponent();
+        }
 
         private void SaveClicked(object sender, EventArgs e)
         {
@@ -30,10 +30,11 @@ namespace Vipets.View
 
         private async void SaveEmployee()
         {
-            var result = await VipetsApiClient.CurrentUsers.CreateEmployee(GetEmployee());
+            var result = await VipetsApiClient.CurrentUsers.SaveEmployee(GetEmployee());
             if (!result.Success)
             {
                 await DisplayAlert("ERROR", "Error saving data", "OK");
+                CleanFields();
                 return;
             }
             else
@@ -50,6 +51,14 @@ namespace Vipets.View
             employee.surname = employeeSurname.Text;
             employee.petshops = new List<Petshop>() { Singleton<AppProperties>.Instance().GetLoggedUser().PetshopSession };
             return employee;
+        }
+
+
+        private void CleanFields()
+        {
+            employeeEmail.Text = string.Empty;
+            employeeName.Text = string.Empty;
+            employeeSurname.Text = string.Empty;
         }
 
     }

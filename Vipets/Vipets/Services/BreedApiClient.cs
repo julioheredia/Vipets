@@ -12,7 +12,7 @@ namespace Vipets.Services
     {
         public BreedApiClient() : base(Vipets.Resources.Application.restUrl) { }
 
-        public async Task<BaseApiResult<List<Breed>>> breeds()
+        public async Task<BaseApiResult<List<Breed>>> Breeds()
         {
             StringBuilder content = new StringBuilder();
             content.Append("breeds");

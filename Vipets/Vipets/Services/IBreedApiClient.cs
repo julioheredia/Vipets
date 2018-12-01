@@ -10,6 +10,6 @@ namespace Vipets.Services
 {
     public interface IBreedApiClient : IApiClient
     {
-        Task<BaseApiResult<List<Breed>>> breeds();
+        Task<BaseApiResult<List<Breed>>> Breeds();
     }
 }

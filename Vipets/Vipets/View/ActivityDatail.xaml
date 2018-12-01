@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vipets.View.ActivityDatail"
              Title="Activity Datail"
-             xmlns:local="clr-namespace:Vipets.View"
              NavigationPage.HasNavigationBar="True"
-             NavigationPage.HasBackButton="True">
+             NavigationPage.HasBackButton="True"
+             BackgroundColor="#FFFFFF">
 
     <ContentPage.Resources>
         <ResourceDictionary>

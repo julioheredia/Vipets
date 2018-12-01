@@ -6,7 +6,8 @@
             NavigationPage.HasNavigationBar="False"
             NavigationPage.HasBackButton="False"
             BarBackgroundColor="LightSkyBlue"
-            HeightRequest="10">
+            HeightRequest="10"
+            BackgroundColor="#FFFFFF">
     
     <local:UserActivityPage />
     <local:NewPetActivity />

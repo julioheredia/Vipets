@@ -181,15 +181,6 @@
     <BundleResource Include="Resources\Default-Portrait%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\mypet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\home.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\pet_aux_background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\autern_logo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -200,9 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fish.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\pets_logo.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\robin.png" />

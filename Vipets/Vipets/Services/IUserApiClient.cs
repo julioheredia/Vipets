@@ -11,8 +11,8 @@ namespace Vipets.Services
     public interface IUserApiClient : IApiClient
     {
         Task<BaseApiResult<List<User>>> EmployeesByPetshop(long petshopId);
-        Task<BaseApiResult<List<User>>> clientsByPetshop(long petshopId);
-        Task<BaseApiResult<User>> CreateClient(User client);
-        Task<BaseApiResult<User>> CreateEmployee(User client);
+        Task<BaseApiResult<List<User>>> ClientsByPetshop(long petshopId);
+        Task<BaseApiResult<User>> SaveClient(User client);
+        Task<BaseApiResult<User>> SaveEmployee(User client);
     }
 }

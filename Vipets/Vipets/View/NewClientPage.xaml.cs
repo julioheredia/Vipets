@@ -37,7 +37,7 @@ namespace Vipets.View
 
         private async void SaveClient()
         {
-            var result = await VipetsApiClient.CurrentUsers.CreateClient(GetClient());
+            var result = await VipetsApiClient.CurrentUsers.SaveClient(GetClient());
             if (!result.Success)
             {
                 await DisplayAlert("ERROR", "Error saving data", "OK");
@@ -90,6 +90,7 @@ namespace Vipets.View
             if (selectImageFile == null)
             {
                 await DisplayAlert("Error", "Could not get the image, plase try again.", "OK");
+                CleanFields();
                 return;
             }
             petImage.IsVisible = true;
@@ -98,7 +99,7 @@ namespace Vipets.View
 
         private async void LoadLists()
         {
-            var breedresult = await VipetsApiClient.CurrentBreeds.breeds();
+            var breedresult = await VipetsApiClient.CurrentBreeds.Breeds();
             if (breedresult.Success)
                 breeds = breedresult.Data;
 
@@ -146,6 +147,18 @@ namespace Vipets.View
             clientName.IsVisible = isVisible;
             clientSurname.IsVisible = isVisible;
             emailClient.IsVisible = isVisible;
+        }
+
+        private void CleanFields()
+        {
+            VisiblePageComponents(false, false, false);
+            ViewUtil.CleanPicker(picker);
+            ViewUtil.CleanPicker(pickerBreeds);
+            petName.Text = string.Empty;
+            petImage.Source = null;
+            clientName.Text = string.Empty;
+            clientSurname.Text = string.Empty;
+            emailClient.Text = string.Empty;
         }
 
     }

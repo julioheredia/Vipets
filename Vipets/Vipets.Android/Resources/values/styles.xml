@@ -20,7 +20,10 @@
     <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight and colorSwitchThumbNormal. -->
     <item name="windowActionModeOverlay">true</item>
-
+    
+    <!-- custom -->
+    <item name="android:windowBackground">@drawable/mainback</item>
+    
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
   </style>
 

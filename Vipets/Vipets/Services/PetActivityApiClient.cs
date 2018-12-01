@@ -26,7 +26,7 @@ namespace Vipets.Services
             return await GetAsync<List<PetActivity>>(content.ToString());
         }
 
-        public async Task<BaseApiResult<PetActivity>> CreatePetActivitys(PetActivity petActivity)
+        public async Task<BaseApiResult<PetActivity>> SavePetActivitys(PetActivity petActivity)
         {
             return await PutAsync<PetActivity>("petActivitys", petActivity);
         }
